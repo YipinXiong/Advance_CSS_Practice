@@ -58,6 +58,10 @@ the position attribute as relative. */
     height: 35px;
 }
 
+.logo:hover {
+    animation: moveInRight 1s ease-in;
+}
+
 .text-box {
     position: absolute;
     top: 50%;
@@ -65,6 +69,8 @@ the position attribute as relative. */
     /* above two 50% refer to the parent size; however, translate ones refer to */
     /* the element itself. Btw, transform can use to skew and rotate the div!!!*/
     transform: translate(-50%,-50%);
+    /* Because we need to make the buttom in the middle,  */
+    text-align: center;
 }
 .heading-primary {
     color: #fff;
@@ -76,6 +82,8 @@ the position attribute as relative. */
     font-size: 60px;
     font-weight: 700;
     letter-spacing: 35px;
+    animation: moveInLeft 1s linear;
+    /* add count can repeat many times */
 }
 
 .heading-primary-sub {
@@ -83,4 +91,100 @@ the position attribute as relative. */
     font-size: 30px;
     font-weight: 200;
     letter-spacing: 5px;
+    animation: moveInRight 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    margin-bottom: 30px;
+}
+
+/* give this animation a name; using @ decorator. */
+/* all precentages here mean the process */
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    70% {
+        transform: translateX(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    70% {
+        opacity: 0.7;
+        transform:translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* The :link CSS pseudo-class represents an element that has not yet been visited. 
+It matches every unvisited <a>, <area>, or <link> element that has an href attribute. */
+/* To style links appropriately, put the :link rule before all other link-related rules,
+ as defined by the LVHA-order: :link — :visited — :hover — :active. */
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    /* because <a> is an inline element, thus, we cannot use padding or 
+    marigin; to make it work, we need to display it as inline-block */
+    transition: all .2s;
+    position: relative;
+}
+
+.btn:hover {
+    /* Because the direction of Y-axis is from up to down!! */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0, 0, .2);
+}
+
+/*active means being clicked*/
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0, 0, .2);
+}
+
+.btn-white {
+    background-color: white;
+    color: #777;
+}
+
+.btn::after {
+    /* content part is compulsory, otherwise it will not show up */
+    content: "";
+    display: inline-block;
+    /* height and width here refers to the original element */
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: white;
+    color: #777;
+}
+
+.btn:hover::after {
+    transform: scale(1.5);
+    opacity: 0;
 }
