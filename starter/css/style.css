@@ -6,3 +6,81 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+/* we use this to initialize the whole page. 
+As I knew, there were two box-model. So, we need to choose the 
+box-sizing as W3C defined.*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+everything we reset or specify the font is in the body tag rather than put into
+the above universal tag. */
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+}
+
+/* In Css, order the element's style in the sequence where they are in the HTML File */
+.header {
+    position: relative;
+    /* 95% of the view point height */
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+        #7ed56f4f,
+        #28b48583),
+        url('./../img/hero.jpg');
+    background-size: cover;
+    background-position: top;
+    /* use polygon's four parameter to identify the four corners how the image shows. */
+    /* clip-path: polygon(0 0,100% 0, 100% 80%, 0 100%)  */
+    clip-path: polygon(0 0,100% 0, 100% 80%,0 100%)
+}
+
+/* the position top and left reference to the closet parent element which set
+the position attribute as relative. */
+.logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+
+.logo {
+    /* we only need to set height attribute here, browser will help up scale the width
+    automatically. */
+    height: 35px;
+}
+
+.text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* above two 50% refer to the parent size; however, translate ones refer to */
+    /* the element itself. Btw, transform can use to skew and rotate the div!!!*/
+    transform: translate(-50%,-50%);
+}
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 30px;
+    font-weight: 200;
+    letter-spacing: 5px;
+}
